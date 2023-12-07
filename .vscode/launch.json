@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-FirstSpringFlowApplication<FirstSpringFlow>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.firstspringflow.FirstSpringFlow.FirstSpringFlowApplication",
+            "projectName": "FirstSpringFlow",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
