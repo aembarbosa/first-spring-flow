@@ -2,6 +2,7 @@ package com.firstspringflow.FirstSpringFlow;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 // anotação para configurar o projeto pra que ele seja uma aplicação do spring boot
 // anotation faz um processamento por baixo dos panos na hora de compilar o código fonte 
