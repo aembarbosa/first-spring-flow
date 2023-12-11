@@ -2,6 +2,7 @@ package com.firstspringflow.FirstSpringFlow.config;
 
 import com.firstspringflow.FirstSpringFlow.entities.Order;
 import com.firstspringflow.FirstSpringFlow.entities.User;
+import com.firstspringflow.FirstSpringFlow.enums.OrderStatus;
 import com.firstspringflow.FirstSpringFlow.repositories.OrderRepository;
 import com.firstspringflow.FirstSpringFlow.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +31,9 @@ public class TestConfig implements CommandLineRunner {
 
         // Data no formato ISO 8601 (ano-mes-diaThora:minutos:segundosZ)
         // O Z significa que o horario esta no padrao UTC (Greenwich)
-        Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), u1);
-        Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), u2);
-        Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), u1);
+        Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.PAID, u1);
+        Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT, u2);
+        Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.PAID, u1);
 
         userRepository.saveAll(Arrays.asList(u1,u2));
         orderRepository.saveAll(Arrays.asList(o1,o2,o3));
