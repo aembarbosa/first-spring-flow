@@ -21,7 +21,8 @@ public class Product implements Serializable {
 
     // HashSet é a classe que corresponde a interface Set
     // A instanciacao ocorre para que a colecao nao comece nula -> comeca vazia, porem instanciada
-    @Transient
+    @ManyToMany
+    @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
     public Product() {
