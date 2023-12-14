@@ -46,4 +46,12 @@ public class UserResource {
         return ResponseEntity.created(uri).body(obj);
     }
 
+    @DeleteMapping(value = "/{id}")
+    // @PathVariable para o Long id ser reconhecido como uma variavel da url
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
+        // O noContent retorna uma resposta vazia; o codigo HTTP de uma resposta que nao tem conteudo eh o 204
+        return ResponseEntity.noContent().build();
+    }
+
 }
