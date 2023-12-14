@@ -2,6 +2,7 @@ package com.firstspringflow.FirstSpringFlow.services;
 
 import com.firstspringflow.FirstSpringFlow.entities.User;
 import com.firstspringflow.FirstSpringFlow.repositories.UserRepository;
+import com.firstspringflow.FirstSpringFlow.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class UserService {
 
     public User findById(Long id) {
        Optional<User> obj = repository.findById(id);
-       return obj.get();
+       return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     // Inserir um usuario no banco de dados
