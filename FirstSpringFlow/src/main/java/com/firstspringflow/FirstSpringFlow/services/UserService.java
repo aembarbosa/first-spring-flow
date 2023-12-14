@@ -4,6 +4,7 @@ import com.firstspringflow.FirstSpringFlow.entities.User;
 import com.firstspringflow.FirstSpringFlow.repositories.UserRepository;
 import com.firstspringflow.FirstSpringFlow.services.exceptions.DatabaseException;
 import com.firstspringflow.FirstSpringFlow.services.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -43,10 +44,14 @@ public class UserService {
     }
 
     public User update(Long id, User obj) {
-        // getReferenceById vai instanciar um usuario, monitorado pelo JPA (nao vai direto no banco de dados)
-        User entity = repository.getReferenceById(id);
-        updateData(entity, obj);
-        return repository.save(entity);
+        try {
+            // getReferenceById vai instanciar um usuario, monitorado pelo JPA (nao vai direto no banco de dados)
+            User entity = repository.getReferenceById(id);
+            updateData(entity, obj);
+            return repository.save(entity);
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException(id);
+        }
     }
 
     private void updateData(User entity, User obj) {
